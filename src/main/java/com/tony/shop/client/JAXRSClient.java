@@ -13,6 +13,6 @@ public class JAXRSClient {
 		InputStream cust = JAXRSClient.class.getResourceAsStream("/customer.xml");
 		String xml = new String(cust.readAllBytes(), "utf-8");
 		Response response = client.target("http://localhost:8080/services/customers").request().post(Entity.xml(xml));
-
+		int status = response.getStatus();
 	}
 }
