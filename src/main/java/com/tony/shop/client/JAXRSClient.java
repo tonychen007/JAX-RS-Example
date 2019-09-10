@@ -14,5 +14,11 @@ public class JAXRSClient {
 		String xml = new String(cust.readAllBytes(), "utf-8");
 		Response response = client.target("http://localhost:8080/services/customers").request().post(Entity.xml(xml));
 		int status = response.getStatus();
+		response.close();
+
+		String loc = response.getLocation().toString();
+		response = client.target(loc).request().get();
+		Object ent = response.getEntity();
+		int asm3 = 0;
 	}
 }

@@ -13,7 +13,7 @@ public interface CustomerResource {
 
     @GET
     @Path("{id}")
-    @Produces("application/xmll; charset=utf-8")
+    @Produces("application/xml; charset=utf-8")
     StreamingOutput getCustomer(@PathParam("id") int id);
 
     @PUT
