@@ -1,5 +1,6 @@
 package com.tony.shop.app;
 
+import com.tony.shop.service.impl.CustomerDatabaseResource;
 import com.tony.shop.service.impl.CustomerResourceService;
 
 import javax.ws.rs.ApplicationPath;
@@ -15,6 +16,7 @@ public class ShoppingApp extends Application {
 
 	public ShoppingApp() {
 		singletons.add(new CustomerResourceService());
+		singletons.add(new CustomerDatabaseResource());
 	}
 
 	@Override
