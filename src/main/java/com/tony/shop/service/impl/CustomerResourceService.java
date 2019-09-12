@@ -21,10 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class CustomerResourceService implements CustomerResource {
-    private Map<Integer, Customer> customerDB = new ConcurrentHashMap<>();
-    private AtomicInteger idCounter = new AtomicInteger();
-
+public class CustomerResourceService extends AbstractResourceService implements CustomerResource {
     @Override
     public Response createCustomer(InputStream is) {
         Customer customer = readCustomer(is);
@@ -57,54 +54,8 @@ public class CustomerResourceService implements CustomerResource {
         current.setState(update.getState());
     }
 
-    protected Customer readCustomer(InputStream is) {
-        try {
-            DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Document doc = builder.parse(is);
-            Element root = doc.getDocumentElement();
-            Customer cust = new Customer();
-
-            if (root.getAttribute("id") != null
-                    && !root.getAttribute("id").trim().equals("")) {
-                cust.setId(Integer.valueOf(root.getAttribute("id")));
-            }
-
-            NodeList nodes = root.getChildNodes();
-            for (int i = 0; i < nodes.getLength(); i++) {
-                Element element = (Element) nodes.item(i);
-                if (element.getTagName().equals("first-name")) {
-                    cust.setFirstName(element.getTextContent());
-                } else if (element.getTagName().equals("last-name")) {
-                    cust.setLastName(element.getTextContent());
-                } else if (element.getTagName().equals("street")) {
-                    cust.setStreet(element.getTextContent());
-                } else if (element.getTagName().equals("city")) {
-                    cust.setCity(element.getTextContent());
-                } else if (element.getTagName().equals("state")) {
-                    cust.setState(element.getTextContent());
-                } else if (element.getTagName().equals("zip")) {
-                    cust.setZip(element.getTextContent());
-                } else if (element.getTagName().equals("country")) {
-                    cust.setCountry(element.getTextContent());
-                }
-            }
-
-            return cust;
-        } catch (Exception e) {
-            throw new WebApplicationException(e, Response.Status.BAD_REQUEST);
-        }
-    }
-
-    protected void outputCustomer(OutputStream os, Customer cust) throws IOException {
-        PrintStream writer = new PrintStream(os);
-        writer.println("<customer id=" + cust.getId() + ">");
-        writer.println("<first-name>" + cust.getFirstName() + "</first-name>");
-        writer.println("<last-name>" + cust.getLastName() + "</last-name>");
-        writer.println("<street>" + cust.getStreet() + " </street>");
-        writer.println("<city>" + cust.getCity() + " </city>");
-        writer.println("<state>" + cust.getState() + " </state>");
-        writer.println("<zip>" + cust.getZip() + " </zip>");
-        writer.println("<country> " + cust.getCountry() + " </country>");
-        writer.println("</customer>");
+    @Override
+    public Response getMatrixParam(String matrix) {
+		return Response.created(URI.create("/" + matrix)).build();
     }
 }

@@ -20,4 +20,9 @@ public interface CustomerResource {
     @Path("{id}")
     @Consumes("application/xml; charset=utf-8")
     void updateCustomer(@PathParam("id") int id, InputStream is);
+
+    @GET
+	@Path("/1/{matrix}")
+	@Consumes("text/html;charser-utf-8")
+    Response getMatrixParam(@PathParam("matrix") String matrix);
 }

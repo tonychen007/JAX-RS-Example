@@ -1,7 +1,5 @@
 package com.tony.shop.service.impl;
 
-import com.tony.shop.service.CustomerResource;
-
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
@@ -9,11 +7,17 @@ import javax.ws.rs.PathParam;
 public class CustomerDatabaseResource {
 
 	@Path("{database}-db")
-	public CustomerResource getCustomerResource(@PathParam("database") String db) {
+	public Object getCustomerResource(@PathParam("database") String db) {
 		return locateCustomerDB(db);
 	}
 
-	public CustomerResource locateCustomerDB(String db) {
-		return new CustomerResourceService();
+	public Object locateCustomerDB(String db) {
+		if ("usa".equalsIgnoreCase(db)) {
+			return new CustomerResourceService();
+		} else if ("tw".equalsIgnoreCase(db)) {
+			return new FirstLastCustomerResourceService();
+		} else {
+			return  null;
+		}
 	}
 }
