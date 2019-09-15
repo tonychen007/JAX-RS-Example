@@ -1,14 +1,15 @@
 package com.tony.shop.service.impl;
 
+import com.tony.shop.domain.Color;
 import com.tony.shop.domain.Customer;
+import com.tony.shop.domain.TestBean;
 import com.tony.shop.service.CustomerResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.StreamingOutput;
+import javax.ws.rs.core.*;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.URI;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -56,6 +58,34 @@ public class CustomerResourceService extends AbstractResourceService implements 
 
     @Override
     public Response getMatrixParam(String matrix) {
-		return Response.created(URI.create("/" + matrix)).build();
+        return Response.created(URI.create("/" + matrix)).build();
+    }
+
+
+    @Override
+    public Response getCarInfo(@PathParam("model") PathSegment car,
+                               @PathParam("year") String year,
+                               @Context UriInfo uri) {
+        String color = car.getMatrixParameters().getFirst("color");
+        URI bu = uri.getBaseUri();
+        String path = uri.getPath();
+        MultivaluedMap m = uri.getPathParameters();
+        List<PathSegment> pss = uri.getPathSegments();
+        return Response.ok("car:" + color + ", year:" + year).build();
+    }
+
+    @Override
+    public Response getFormInfo(String first) {
+        return Response.ok("form:" + first).build();
+    }
+
+    @Override
+    public Response getBeanInfo(TestBean bean) {
+        return Response.ok("form:" + bean).build();
+    }
+
+    @Override
+    public Response getParamConverter(Color cl) {
+        return Response.ok("form:" + Color.BLACK).build();
     }
 }

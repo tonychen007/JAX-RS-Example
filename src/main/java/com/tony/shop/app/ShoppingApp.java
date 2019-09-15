@@ -1,5 +1,6 @@
 package com.tony.shop.app;
 
+import com.tony.shop.convert.ColorConverterProvider;
 import com.tony.shop.service.impl.CustomerDatabaseResource;
 import com.tony.shop.service.impl.CustomerResourceService;
 
@@ -17,6 +18,7 @@ public class ShoppingApp extends Application {
 	public ShoppingApp() {
 		singletons.add(new CustomerResourceService());
 		singletons.add(new CustomerDatabaseResource());
+		singletons.add(new ColorConverterProvider());
 	}
 
 	@Override
