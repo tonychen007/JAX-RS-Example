@@ -58,17 +58,21 @@ public class FileService {
 	@Path("post")
 	@POST
 	@Produces("text/plain")
-	public String postFile(MultipartFormDataInput file) {
-		String sb = null;
+	public String postFile(File file) {
+		StringBuffer sb = new StringBuffer(1024);
 		try {
-			InputPart part = file.getFormDataMap().get("file").get(0);
-			sb = part.getBody(String.class, null);
+			FileReader fr = new FileReader(file);
+			LineNumberReader lnr = new LineNumberReader(fr);
+			String line = null;
+			do {
+				line = lnr.readLine();
+				sb.append(line);
+				sb.append("\n");
+			} while (line != null);
 		} catch (Exception e) {
 
 		}
 
-
-		// TODO get file content
-		return sb;
+		return sb.toString();
 	}
 }

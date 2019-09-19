@@ -1,0 +1,15 @@
+------WebKitFormBoundary2omu88GPtU0xaEN6
+Content-Disposition: form-data; name="file1"; filename="1.tmp"
+Content-Type: application/octet-stream
+
+123
+456
+
+------WebKitFormBoundary2omu88GPtU0xaEN6
+Content-Disposition: form-data; name="file2"; filename=".X0-lock"
+Content-Type: application/octet-stream
+
+      1603
+
+------WebKitFormBoundary2omu88GPtU0xaEN6--
+null
