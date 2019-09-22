@@ -24,7 +24,7 @@ public class ShoppingApp extends Application {
         singletons.add(new FileService());
         singletons.add(new ColorConverterProvider());
         singletons.add(new CustomerXMLResolver());
-        singletons.add(new CustomerJSONResolver());
+        //singletons.add(new CustomerJSONResolver());
     }
 
     @Override

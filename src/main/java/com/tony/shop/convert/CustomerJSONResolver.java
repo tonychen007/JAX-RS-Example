@@ -18,7 +18,7 @@ public class CustomerJSONResolver implements ContextResolver<JAXBContext> {
 
     public CustomerJSONResolver() {
         try {
-            ctx = JettisonMappedContext.newInstance(JAXAddress.class);
+            ctx = JettisonMappedContext.newInstance(JAXCustomer.class);
         } catch (Exception e) {
 
         }

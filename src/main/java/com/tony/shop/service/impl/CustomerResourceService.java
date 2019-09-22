@@ -51,7 +51,7 @@ public class CustomerResourceService extends AbstractResourceService implements 
     }
 
     @Override
-    public JAXCustomer getCustomerJSON(int id) {
+    public JAXCustomer getCustomerJSON(@PathParam("id") int id) {
         return buildCustomer(id);
     }
 
