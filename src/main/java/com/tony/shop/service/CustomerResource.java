@@ -1,7 +1,7 @@
 package com.tony.shop.service;
 
 import com.tony.shop.domain.Color;
-import com.tony.shop.domain.TestAnno;
+import com.tony.shop.domain.JAXB.JAXCustomer;
 import com.tony.shop.domain.TestBean;
 
 import javax.ws.rs.*;
@@ -18,6 +18,17 @@ public interface CustomerResource {
     @Path("{id}")
     @Produces("application/xml; charset=utf-8")
     StreamingOutput getCustomer(@PathParam("id") int id);
+
+
+    @GET
+    @Path("xml/cust/{id}")
+    @Produces("application/xml; charset=utf-8")
+    JAXCustomer getCustomerXML(@PathParam("id") int id);
+
+    @GET
+    @Path("json/cust/{id}")
+    @Produces("application/json; charset=utf-8")
+    JAXCustomer getCustomerJSON(@PathParam("id") int id);
 
     @PUT
     @Path("{id}")
@@ -48,5 +59,5 @@ public interface CustomerResource {
     @GET
     @Path("/paramCovt")
     @Produces("text/html; charset=utf-8")
-    Response getParamConverter(@QueryParam("color")@TestAnno Color cl);
+    Response getParamConverter(@QueryParam("color") Color cl);
 }

@@ -2,6 +2,8 @@ package com.tony.shop.service.impl;
 
 import com.tony.shop.domain.Color;
 import com.tony.shop.domain.Customer;
+import com.tony.shop.domain.JAXB.JAXAddress;
+import com.tony.shop.domain.JAXB.JAXCustomer;
 import com.tony.shop.domain.TestBean;
 import com.tony.shop.service.CustomerResource;
 import org.w3c.dom.Document;
@@ -41,6 +43,16 @@ public class CustomerResourceService extends AbstractResourceService implements 
         }
 
         return (output -> outputCustomer(output, customer));
+    }
+
+    @Override
+    public JAXCustomer getCustomerXML(@PathParam("id") int id) {
+        return buildCustomer(id);
+    }
+
+    @Override
+    public JAXCustomer getCustomerJSON(int id) {
+        return buildCustomer(id);
     }
 
     @Override
