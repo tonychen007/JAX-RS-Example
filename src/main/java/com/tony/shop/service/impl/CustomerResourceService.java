@@ -51,6 +51,17 @@ public class CustomerResourceService extends AbstractResourceService implements 
     }
 
     @Override
+    public Customer getCustomerObj(@PathParam("id") int id) {
+        Customer cust = new Customer();
+        cust.setId(id);
+        cust.setFirstName("tony");
+        cust.setLastName("chen");
+        cust.setCity("Shanghai");
+
+        return cust;
+    }
+
+    @Override
     public JAXCustomer getCustomerJSON(@PathParam("id") int id) {
         return buildCustomer(id);
     }

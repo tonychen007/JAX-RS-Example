@@ -1,8 +1,6 @@
 package com.tony.shop.app;
 
-import com.tony.shop.convert.ColorConverterProvider;
-import com.tony.shop.convert.CustomerJSONResolver;
-import com.tony.shop.convert.CustomerXMLResolver;
+import com.tony.shop.convert.*;
 import com.tony.shop.service.impl.CustomerDatabaseResourceService;
 import com.tony.shop.service.impl.CustomerResourceService;
 import com.tony.shop.service.impl.FileService;
@@ -23,8 +21,11 @@ public class ShoppingApp extends Application {
         singletons.add(new CustomerDatabaseResourceService());
         singletons.add(new FileService());
         singletons.add(new ColorConverterProvider());
-        singletons.add(new CustomerXMLResolver());
-        //singletons.add(new CustomerJSONResolver());
+
+        // set<class<?>> for per request
+        empty.add(JavaXMLMarshaller.class);
+        empty.add(JavaObjectMarshaller.class);
+        empty.add(JavaJSONMarshaller.class);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.tony.shop.convert;
 
-import com.tony.shop.domain.Customer;
-import com.tony.shop.domain.JAXB.JAXAddress;
 import com.tony.shop.domain.JAXB.JAXCustomer;
 import org.jboss.resteasy.plugins.providers.jaxb.json.JettisonMappedContext;
 

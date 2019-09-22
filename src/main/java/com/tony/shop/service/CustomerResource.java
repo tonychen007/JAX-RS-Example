@@ -1,6 +1,7 @@
 package com.tony.shop.service;
 
 import com.tony.shop.domain.Color;
+import com.tony.shop.domain.Customer;
 import com.tony.shop.domain.JAXB.JAXCustomer;
 import com.tony.shop.domain.TestBean;
 
@@ -24,6 +25,11 @@ public interface CustomerResource {
     @Path("xml/cust/{id}")
     @Produces("application/xml; charset=utf-8")
     JAXCustomer getCustomerXML(@PathParam("id") int id);
+
+    @GET
+    @Path("obj/cust/{id}")
+    @Produces("text/html; charset=utf-8")
+    Customer getCustomerObj(@PathParam("id") int id);
 
     @GET
     @Path("json/cust/{id}")
