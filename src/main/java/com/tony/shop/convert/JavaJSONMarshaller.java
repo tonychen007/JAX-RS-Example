@@ -1,8 +1,6 @@
 package com.tony.shop.convert;
 
-import com.tony.shop.domain.Customer;
 import org.jboss.resteasy.plugins.providers.jaxb.json.JettisonMappedContext;
-import org.jboss.resteasy.plugins.providers.jaxb.json.JsonJAXBContextFinder;
 
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
@@ -10,7 +8,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.IOException;
 import java.io.OutputStream;
