@@ -1,6 +1,8 @@
 package com.tony.shop.service.impl;
 
 import com.tony.shop.domain.Customer;
+import com.tony.shop.domain.JAXB.JAXAddress;
+import com.tony.shop.domain.JAXB.JAXCustomer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -20,6 +22,21 @@ import java.util.concurrent.atomic.AtomicInteger;
 abstract  public class AbstractResourceService {
 	protected Map<Integer, Customer> customerDB = new ConcurrentHashMap<>();
 	protected AtomicInteger idCounter = new AtomicInteger();
+
+	protected JAXCustomer buildCustomer(int id) {
+        JAXCustomer cust = new JAXCustomer();
+        JAXAddress address = new JAXAddress();
+        address.setState("China");
+        address.setStreet("XX Street");
+        address.setState("YY State");
+        address.setZip("100100");
+
+        cust.setId(id);
+        cust.setName("tony");
+        cust.setAddress(address);
+
+        return cust;
+    }
 
 	protected Customer readCustomer(InputStream is) {
 		try {
