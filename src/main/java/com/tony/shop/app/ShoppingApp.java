@@ -1,10 +1,8 @@
 package com.tony.shop.app;
 
 import com.tony.shop.convert.*;
-import com.tony.shop.service.impl.CustomerDatabaseResourceService;
-import com.tony.shop.service.impl.CustomerResourceService;
-import com.tony.shop.service.impl.FileService;
-import com.tony.shop.service.impl.TextBookService;
+import com.tony.shop.exception.NotFoundExceptionMapper;
+import com.tony.shop.service.impl.*;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -23,6 +21,9 @@ public class ShoppingApp extends Application {
 		singletons.add(new ColorConverterProvider());
 		singletons.add(new FileService());
 		singletons.add(new TextBookService());
+		singletons.add(new ExceptionService());
+
+		empty.add(NotFoundExceptionMapper.class);
 	}
 
 	@Override

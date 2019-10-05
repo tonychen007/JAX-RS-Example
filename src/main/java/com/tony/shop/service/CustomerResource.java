@@ -27,6 +27,11 @@ public interface CustomerResource {
     JAXCustomer getCustomerXML(@PathParam("id") int id);
 
     @GET
+    @Path("xml/customerList")
+    @Produces("application/xml; charset=utf-8")
+    Response getCustomerList();
+
+    @GET
     @Path("obj/cust/{id}")
     @Produces("text/html; charset=utf-8")
     Customer getCustomerObj(@PathParam("id") int id);
@@ -48,7 +53,7 @@ public interface CustomerResource {
 
 
     @GET
-    @Path("/{model}/{year}")
+    @Path("/car/{model}/{year}")
     @Produces("text/html; charset=utf-8")
     Response getCarInfo(@PathParam("model") PathSegment car, @PathParam("year") String year, @Context UriInfo uri);
 
