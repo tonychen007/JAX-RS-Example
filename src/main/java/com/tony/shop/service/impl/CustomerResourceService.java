@@ -59,7 +59,7 @@ public class CustomerResourceService extends AbstractResourceService implements 
 		customers.add(new JAXCustomer());
 
 		GenericEntity entity = new GenericEntity<List<JAXCustomer>>(customers) {};
-		return Response.ok(customers).build();
+		return Response.ok(entity).build();
 	}
 
 	@Override
